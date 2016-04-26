@@ -16,6 +16,10 @@ class Hash a where
 instance hashInt :: Hash Int where
   hash = id
 
+instance hashBoolean :: Hash Boolean where
+  hash true = 1
+  hash false = 1073741823
+
 instance hashArray :: (Hash a) => Hash (Array a) where
   hash = map hash >>> foldl combine 0
 
