@@ -15,4 +15,6 @@ main = do
   assert $ isGoodInt (combine bottom top)
 
 isGoodInt :: Int -> Boolean
-isGoodInt n = n >= bottom && n <= top
+isGoodInt n = isGoodIntImpl bottom top n
+
+foreign import isGoodIntImpl :: Int -> Int -> Int -> Boolean
