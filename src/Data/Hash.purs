@@ -1,7 +1,7 @@
 module Data.Hash
 ( class Hash
 , hash
-
+, gHash
 , combine
 ) where
 
