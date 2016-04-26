@@ -16,8 +16,14 @@ class Hash a where
 instance hashInt :: Hash Int where
   hash = id
 
+instance hashArray :: (Hash a) => Hash (Array a) where
+  hash = map hash >>> foldl combine 0
+
+instance hashChar :: Hash Char where
+  hash = Char.toCharCode
+
 instance hashString :: Hash String where
-  hash = String.toCharArray >>> map Char.toCharCode >>> foldl combine 0
+  hash = String.toCharArray >>> hash
 
 combine :: Int -> Int -> Int
 combine x y = x + 31 * x + y
