@@ -1,9 +1,18 @@
-module Test.Main where
+module Test.Main
+( main
+) where
 
-import Prelude
 import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
+import Data.Hash
+import Prelude
+import Test.Assert (ASSERT, assert)
 
-main :: forall e. Eff (console :: CONSOLE | e) Unit
+main :: forall eff. Eff (assert :: ASSERT | eff) Unit
 main = do
-  log "You should add some tests."
+  assert $ isGoodInt (combine top top)
+  assert $ isGoodInt (combine bottom bottom)
+  assert $ isGoodInt (combine top bottom)
+  assert $ isGoodInt (combine bottom top)
+
+isGoodInt :: Int -> Boolean
+isGoodInt n = n >= bottom && n <= top

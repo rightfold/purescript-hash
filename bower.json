@@ -13,5 +13,9 @@
   "dependencies": {
     "purescript-strings": "^0.7.1",
     "purescript-foldable-traversable": "^0.4.2"
+  },
+  "devDependencies": {
+    "purescript-assert": "^0.1.1",
+    "purescript-eff": "^0.1.2"
   }
 }
