@@ -9,6 +9,14 @@ import Test.Assert (ASSERT, assert)
 
 main :: forall eff. Eff (assert :: ASSERT | eff) Unit
 main = do
+  pure $ hash unit
+  pure $ hash 0.0
+  pure $ hash true
+  pure $ hash 0
+  pure $ hash ""
+  pure $ hash 'c'
+  pure $ hash [0]
+
   assert $ isGoodInt (combine top top)
   assert $ isGoodInt (combine bottom bottom)
   assert $ isGoodInt (combine top bottom)
