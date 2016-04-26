@@ -6,7 +6,7 @@ module Data.Hash
 ) where
 
 import Data.Char as Char
-import Data.Foldable (foldl)
+import Data.Foldable (class Foldable, foldl)
 import Data.String as String
 import Prelude
 
@@ -24,8 +24,8 @@ instance hashBoolean :: Hash Boolean where
   hash true = 1
   hash false = 1073741823
 
-instance hashArray :: (Hash a) => Hash (Array a) where
-  hash = map hash >>> foldl combine 1
+instance hashFoldable :: (Foldable f, Hash a) => Hash (f a) where
+  hash = foldl (\h x -> combine h (hash x)) 1
 
 instance hashChar :: Hash Char where
   hash = Char.toCharCode
