@@ -1,3 +1,5 @@
+-- | `Data.Hash` provides non-cryptographic hash functions for various data
+-- | types.
 module Data.Hash
 ( class Hash
 , hash
@@ -41,12 +43,15 @@ instance hashChar    :: Hash Char    where hash = gHash
 
 instance hashArray :: (Hash a) => Hash (Array a) where hash = hashFoldable
 
+-- | Hash any foldable of hashable values.
 hashFoldable :: forall f a. (Foldable f, Hash a) => f a -> Int
 hashFoldable = foldl (\h x -> combine h (hash x)) 1
 
+-- | Combine two hash values into a single hash value.
 combine :: Int -> Int -> Int
 combine x y = x + 31 * x + y
 
+-- | Generic hash function.
 gHash :: forall a. (Generic a) => a -> Int
 gHash = toSpine >>> hash
 
