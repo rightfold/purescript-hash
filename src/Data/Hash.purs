@@ -5,6 +5,7 @@ module Data.Hash
 , combine
 ) where
 
+import Data.Array (sortBy)
 import Data.Char as Char
 import Data.Foldable (class Foldable, foldl)
 import Data.Generic (class Generic, GenericSpine(..), toSpine)
@@ -17,8 +18,9 @@ class Hash a where
 instance hashGenericSpine :: Hash GenericSpine where
   hash (SProd name fields) = combine (hash name) (hash $ fields # map (_ $ unit))
   hash (SRecord fields) = combine (hash keys) (hash vals)
-    where keys = fields # map _.recLabel
-          vals = fields # map (_.recValue >>> (_ $ unit))
+    where sortedFields = fields # sortBy (\a b -> a.recLabel `compare` b.recLabel)
+          keys = sortedFields # map _.recLabel
+          vals = sortedFields # map (_.recValue >>> (_ $ unit))
   hash (SNumber v)  = hash $ numberToString v
   hash (SBoolean v) = if v then 1 else 1073741823
   hash (SInt v)     = v
