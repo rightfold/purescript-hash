@@ -1,0 +1,17 @@
+{
+  "name": "purescript-hash",
+  "version": "1.0.0",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-strings": "^0.7.1",
+    "purescript-foldable-traversable": "^0.4.2"
+  }
+}
