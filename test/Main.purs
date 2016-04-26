@@ -16,6 +16,7 @@ main = do
   pure $ hash ""
   pure $ hash 'c'
   pure $ hash [0]
+  pure $ hashFoldable [0]
 
   assert $ isGoodInt (combine top top)
   assert $ isGoodInt (combine bottom bottom)
