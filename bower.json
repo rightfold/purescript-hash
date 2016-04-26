@@ -1,6 +1,11 @@
 {
   "name": "purescript-hash",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rightfold/purescript-hash.git"
+  },
+  "license": "BSD",
   "moduleType": [
     "node"
   ],
