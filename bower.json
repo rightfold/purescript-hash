@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "purescript-assert": "^0.1.1",
-    "purescript-eff": "^0.1.2"
+    "purescript-eff": "^0.1.2",
+    "purescript-console": "^0.1.1"
   }
 }
