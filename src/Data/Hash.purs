@@ -25,7 +25,7 @@ instance hashBoolean :: Hash Boolean where
   hash false = 1073741823
 
 instance hashArray :: (Hash a) => Hash (Array a) where
-  hash = map hash >>> foldl combine 0
+  hash = map hash >>> foldl combine 1
 
 instance hashChar :: Hash Char where
   hash = Char.toCharCode
