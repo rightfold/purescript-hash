@@ -15,6 +15,9 @@ import Data.Generic (class Generic, GenericSpine(..), toSpine)
 import Data.String as String
 import Prelude
 
+-- | Instances must satisfy the following laws:
+-- |
+-- | - Equality: `not (x == y) || hash x == hash y`
 class Hash a where
   hash :: a -> Int
 
