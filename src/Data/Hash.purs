@@ -34,6 +34,7 @@ instance hashGenericSpine :: Hash GenericSpine where
   hash (SString s)  = hashFoldable $ String.toCharArray s
   hash (SChar c)    = Char.toCharCode c
   hash (SArray xs)  = hashFoldable $ xs # map (_ $ unit)
+  hash SUnit        = 23121994
 
 instance hashUnit :: Hash Unit where
   hash _ = 1

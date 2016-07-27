@@ -11,5 +11,3 @@ exports.isGoodIntImpl = function(bottom) {
 };
 
 exports.nan = NaN;
-exports.inf = Infinity;
-exports.ninf = -Infinity;
