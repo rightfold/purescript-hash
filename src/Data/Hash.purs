@@ -36,9 +36,7 @@ instance hashGenericSpine :: Hash GenericSpine where
   hash (SArray xs)  = hashFoldable $ xs # map (_ $ unit)
   hash SUnit        = 23121994
 
-instance hashUnit :: Hash Unit where
-  hash _ = 1
-
+instance hashUnit    :: Hash Unit  where hash = gHash
 instance hashNumber  :: Hash Number  where hash = gHash
 instance hashBoolean :: Hash Boolean where hash = gHash
 instance hashInt     :: Hash Int     where hash = gHash
