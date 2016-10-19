@@ -16,14 +16,15 @@
     "output"
   ],
   "dependencies": {
-    "purescript-strings": "^1.0.0",
-    "purescript-foldable-traversable": "^1.0.0",
-    "purescript-generics": "^1.0.0",
-    "purescript-arrays": "^1.0.0"
+    "purescript-strings": "^2.0.1",
+    "purescript-foldable-traversable": "^2.0.0",
+    "purescript-generics": "^3.0.0",
+    "purescript-arrays": "^3.0.0",
+    "purescript-prelude": "~2.1.0"
   },
   "devDependencies": {
-    "purescript-assert": "^1.0.0",
-    "purescript-eff": "^1.0.0",
-    "purescript-console": "^1.0.0"
+    "purescript-assert": "^2.0.0",
+    "purescript-eff": "^2.0.0",
+    "purescript-console": "^2.0.0"
   }
 }
