@@ -28,7 +28,7 @@ instance hashGenericSpine :: Hash GenericSpine where
     where sortedFields = fields # sortBy (\a b -> a.recLabel `compare` b.recLabel)
           keys = sortedFields # map _.recLabel
           vals = sortedFields # map (_.recValue >>> (_ $ unit))
-  hash (SNumber v)  = hash $ numberToString v
+  hash (SNumber v)  = hash $ show v
   hash (SBoolean v) = if v then 1 else 1073741823
   hash (SInt v)     = v
   hash (SString s)  = hashFoldable $ String.toCharArray s
@@ -56,5 +56,3 @@ combine x y = x + 31 * x + y
 -- | Generic hash function.
 gHash :: forall a. (Generic a) => a -> Int
 gHash = toSpine >>> hash
-
-foreign import numberToString :: Number -> String
