@@ -62,6 +62,9 @@ main = do
   test $ isGoodInt (combine top bottom)
   test $ isGoodInt (combine bottom top)
 
+  test $ withoutHashCache (withHashCache 42) == 42
+  test $ hash (withHashCache 42) == hash 42
+
 test :: forall eff. Boolean -> Eff (assert :: ASSERT, console :: CONSOLE | eff) Unit
 test c = do
   assert c

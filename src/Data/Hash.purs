@@ -6,12 +6,17 @@ module Data.Hash
 , hashFoldable
 , combine
 , gHash
+
+, WithHashCache
+, withHashCache
+, withoutHashCache
 ) where
 
 import Data.Array (sortBy)
 import Data.Char as Char
 import Data.Foldable (class Foldable, foldl)
 import Data.Generic (class Generic, GenericSpine(..), toSpine)
+import Data.Lazy (defer, Lazy, force)
 import Data.String as String
 import Prelude
 
@@ -56,3 +61,19 @@ combine x y = x + 31 * x + y
 -- | Generic hash function.
 gHash :: forall a. (Generic a) => a -> Int
 gHash = toSpine >>> hash
+
+-- | Pair a value with a cache of its hash.
+data WithHashCache a = WithHashCache (Lazy Int) a
+
+-- | Pair a value with a cache of its hash. The hash is computed
+-- | lazily.
+withHashCache :: forall a. (Hash a) => a -> WithHashCache a
+withHashCache x = WithHashCache (defer \_ -> hash x) x
+
+-- | Extract the value from a value paired with a cache of its
+-- | hash.
+withoutHashCache :: forall a. WithHashCache a -> a
+withoutHashCache (WithHashCache _ x) = x
+
+instance hashWithHashCache :: Hash (WithHashCache a) where
+  hash (WithHashCache h _) = force h
