@@ -76,7 +76,7 @@ withoutHashCache :: forall a. WithHashCache a -> a
 withoutHashCache (WithHashCache _ x) = x
 
 instance eqWithHashCache :: (Eq a) => Eq (WithHashCache a) where
-  eq a b = withoutHashCache a == withoutHashCache b
+  eq a b = hash a == hash b && withoutHashCache a == withoutHashCache b
 
 instance hashWithHashCache :: Hash (WithHashCache a) where
   hash (WithHashCache h _) = force h
